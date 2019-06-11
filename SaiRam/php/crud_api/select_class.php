@@ -1,0 +1,34 @@
+<?php
+include 'connection.php';
+$query = mysqli_query($con, "SELECT * FROM profile");
+$data = array();
+$qry_array = array();
+$i = 0;
+$total = mysqli_num_rows($query);
+while ($row = mysqli_fetch_array($query)) {
+	
+$id = $_POST['id'];
+//$profilename = $_POST['name'];
+//$email = $_POST['time'];
+//$imagepath = $_POST['photo'];
+
+$uid = $_POST['name'];
+$name = $_POST['time'];
+$address = $_POST['photo'];
+
+  $qry_array[$i] = $data;
+  $i++;
+}
+
+if($query){
+  $response['success'] = 'true';
+  $response['message'] = 'Data Loaded Successfully';
+  $response['total'] = $total;
+  $response['data'] = $qry_array;
+}else{
+  $response['success'] = 'false';
+  $response['message'] = 'Data Loading Failed';
+}
+
+echo json_encode($response);
+?>
